@@ -1,13 +1,13 @@
-# Betting Site Development
+# Project for State of Art DApp
 
-Welcome to the Betting Site Development repository. This project aims to create a cutting-edge online betting platform that operates seamlessly across multiple blockchains, including Solana, Ethereum, and BNB.
+Welcome to the test project. This project aims to check skills of each kind of developers seamlessly across multiple blockchains, including Solana, Ethereum, and BNB.
 
 ## Getting Started
-
+- Prerequirements:
+ Node v20.x.x, Google Chrome
 - Installing Dependecies:
  npm install --legacy-peer-deps
 - Running project:
- npm run start
  npm run dev
 
 ## Table of Contents
@@ -24,7 +24,7 @@ Welcome to the Betting Site Development repository. This project aims to create 
 
 ## Overview
 
-Our platform is an online betting site that offers a variety of games, including Dice, Slots, Flip, and others. Users can connect their wallets to participate in these games, place bets, and manage their funds directly through the site.
+The test project is an simple online betting site that offers a variety of games, including Dice, Slots, Flip, and others. Users can connect their wallets to participate in these games, place bets, and manage their funds directly through the site.
 
 ## Current Functionality
 
@@ -61,4 +61,10 @@ We are expanding the functionality to also work on the Ethereum and BNB chains. 
 ## Performance and Scalability
 
 - Optimize the platform for high performance and scalability to handle a large number of users and transactions across multiple blockchains.
+
+
+# Goal of Project
+## 1. Well-structured design and high-quality code
+## 2. Innovative and user-friendly design
+## 3. Performance and scalability
 

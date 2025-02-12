@@ -1,54 +1,51 @@
 class SearchFeatures {
-  constructor(query, queryString) {
-    this.query = query;
-    this.queryString = queryString;
-  }
+    constructor(query, queryString) {
+        this.query = query
+        this.queryString = queryString
+    }
 
-  search() {
-    const keyword = this.queryString.keyword
-      ? {
-          name: {
-            $regex: this.queryString.keyword,
-            $options: 'i',
-          },
-        }
-      : {};
+    search() {
+        const keyword = this.queryString.keyword ? {
+            name: {
+                $regex: this.queryString.keyword,
+                $options: "i",
+            }
+        } : {};
 
-    this.query = this.query.find({ ...keyword });
-    return this;
-  }
+        // console.log(keyword);
 
-  filter() {
-    const queryCopy = { ...this.queryString };
+        this.query = this.query.find({ ...keyword });
+        return this;
+    }
 
-    // fields to remove for category
-    const removeFields = ['keyword', 'page', 'limit'];
+    filter() {
+        const queryCopy = { ...this.queryString }
 
-    // console.log(queryCopy);
-    removeFields.forEach((key) => delete queryCopy[key]);
-    // console.log(queryCopy);
+        // fields to remove for category
+        const removeFields = ["keyword", "page", "limit"];
 
-    // price filter
-    let queryString = JSON.stringify(queryCopy);
-    queryString = queryString.replace(
-      /\b(gt|gte|lt|lte)\b/g,
-      (key) => `$${key}`
-    );
+        // console.log(queryCopy);
+        removeFields.forEach(key => delete queryCopy[key]);
+        // console.log(queryCopy);
 
-    // console.log(JSON.parse(queryString));
+        // price filter
+        let queryString = JSON.stringify(queryCopy);
+        queryString = queryString.replace(/\b(gt|gte|lt|lte)\b/g, key => `$${key}`);
 
-    this.query = this.query.find(JSON.parse(queryString));
-    return this;
-  }
+        // console.log(JSON.parse(queryString));
 
-  pagination(resultPerPage) {
-    const currentPage = Number(this.queryString.page) || 1;
+        this.query = this.query.find(JSON.parse(queryString));
+        return this;
+    }
 
-    const skipProducts = resultPerPage * (currentPage - 1);
+    pagination(resultPerPage) {
+        const currentPage = Number(this.queryString.page) || 1;
 
-    this.query = this.query.limit(resultPerPage).skip(skipProducts);
-    return this;
-  }
-}
+        const skipProducts = resultPerPage * (currentPage - 1);
+
+        this.query = this.query.limit(resultPerPage).skip(skipProducts);
+        return this;
+    }
+};
 
 module.exports = SearchFeatures;
