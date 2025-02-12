@@ -1,46 +1,43 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const paymentSchema = new mongoose.Schema(
-  {
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema
+const paymentSchema = new mongoose.Schema({
     user: {
-      type: Schema.Types.ObjectId,
-      ref: 'user',
-      required: true,
+        type: Schema.Types.ObjectId,
+        ref: "user",
+        required: true
     },
     order: {
-      type: Schema.Types.ObjectId,
-      ref: 'order',
-      required: true,
+        type: Schema.Types.ObjectId,
+        ref: "order",
+        required: true
     },
     method: {
-      type: String,
-      enum: ['Cash on Delivery', 'manual'], //manual ==> bank or manual esewa..
+        type: String,
+        enum: ['Cash on Delivery','manual']//manual ==> bank or manual esewa..
     },
     shippingCharge: {
-      type: Number,
+        type: Number,
     },
     amount: {
-      type: Number,
+        type: Number,
     },
     returnedAmount: {
-      type: Number,
-      default: null,
+        type: Number,
+        default: null
     },
     transactionCode: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
     },
-    from: {
-      type: Number,
-      max: 9999999999, //!esewa && receiverNumber
+    from:{
+        type:Number,
+        max: 9999999999 //!esewa && receiverNumber
     },
     isDeleted: {
-      type: Date,
-      default: null,
-    },
-  },
-  { timestamps: true }
-);
+        type: Date,
+        default: null
+    }
 
-module.exports = mongoose.model('payment', paymentSchema);
+}, { timestamps: true });
+
+module.exports = mongoose.model("payment", paymentSchema);
