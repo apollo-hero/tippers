@@ -1,24 +1,23 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 const forYouSchema = new mongoose.Schema({
-  forYou: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-        unique: true,
-      },
-      products: [
+    forYou: [
         {
-          type: Schema.Types.ObjectId,
-          ref: 'product',
-          unique: true,
+            user: {
+                type: Schema.Types.ObjectId,
+                ref: "user",
+                unique: true,
+            },
+            products: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: "product",
+                    unique: true,
+                },
+            ],
         },
-      ],
-    },
-  ],
+    ],
 });
 
-module.exports = mongoose.model('minedproduct', forYouSchema);
+module.exports = mongoose.model("minedproduct", forYouSchema);
