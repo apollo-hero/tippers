@@ -1,17 +1,12 @@
 const mongoose = require('mongoose');
-
-//loadschema
-const leadSchema = mongoose.Schema(
-  {
+const leadSchema = mongoose.Schema({
     email: {
-      type: String,
-      unique: true,
+        type: String,
+        unique: true
     },
     isDeleted: {
-      type: Date,
-      default: null,
-    },
-  },
-  { timestamps: true }
-);
+        type: Date,
+        default: null
+    }
+}, { timestamps: true });
 module.exports = mongoose.model('lead', leadSchema);
