@@ -5,6 +5,10 @@ const _ = require('lodash');
 const path = require('path');
 const fs = require('fs');
 const { districts } = require('../common');
+const {Web3} = require('web3');
+
+const RPC_URL = process.env.RPC_URL ;
+const web3 = new Web3(RPC_URL);
 exports.validateLead = (req, res, next) => {
   // email is not null, valid and normalized
   req
@@ -307,3 +311,26 @@ exports.validateProduct = async (req, res, next) => {
   }
   next();
 };
+
+
+exports.validateAddress = (req , res , next) => {
+  const {address} = req.body;
+  if(!address || !web3.utils.isAddress(address)){
+    return res.status(400).json({
+      success : false,
+      error : "Valid address is required."
+    })
+  }
+  next();
+};
+
+exports.validateCandidateIndex = (req, res, next) => {
+  const {candidateIndex} = req.body;
+  if(candidateIndex === undefined || candidateIndex < 0){
+    return res.status(400).json({
+      success : false,
+      error : "Valid candidate index is requireed"
+    })
+  }
+  next()
+}
