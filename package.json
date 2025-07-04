@@ -9,7 +9,14 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "vite",
     "build": "vite build",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run server/voting/deploy.js",
+    "deploy:local": "hardhat run server/voting/deploy.js --network localhost",
+    "node": "hardhat node",
+    "voting:dev": "concurrently \"npm run node\" \"npm run deploy:local\" \"npm run server\"",
+    "accounts": "node server/voting/show-accounts.js"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.27.0",
@@ -54,7 +61,8 @@
     "swr": "^2.2.4",
     "three": "^0.158.0",
     "winston-compose": "^3.17.7",
-    "zustand": "^4.4.1"
+    "zustand": "^4.4.1",
+    "ethers": "^6.8.1"
   },
   "devDependencies": {
     "@types/matter-js": "^0.19.5",
@@ -67,6 +75,8 @@
     "unplugin-fonts": "^1.0.3",
     "vite": "^4.2.1",
     "vite-plugin-node-polyfills": "^0.22.0",
-    "vite-plugin-pwa": "^0.17.4"
+    "vite-plugin-pwa": "^0.17.4",
+    "hardhat": "^2.19.0",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0"
   }
 }
